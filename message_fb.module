@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * @file
+ * Message in Fabecook style.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function message_fb_theme(){
+  return array(
+    'message_fb' =>  array(
+      'template' => 'theme/message-fb',
+      'render element' => 'entity'
+    ),
+  );
+}
+
+function message_fb_preprocess_entity(&$variables) {
+  if ($variables['entity_type'] != 'message') {
+    return;
+  }
+
+  // Check if we have a Babble field on the Message entity.
+  $message = $variables['message'];
+  $babble_field = FALSE;
+  foreach (field_info_instances('message', $message->type) as $field_name => $instance) {
+    $field = field_info_field($field_name);
+    if ($field['type'] == 'babble') {
+      $babble_field = $field_name;
+      break;
+    }
+  }
+
+  if (!$babble_field) {
+    // Not a Babble field.
+    return;
+  }
+
+  $variables['babble_field'] = $babble_field;
+  $variables['theme_hook_suggestions'][] = 'message_fb';
+}

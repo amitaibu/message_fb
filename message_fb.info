@@ -1,0 +1,7 @@
+name = "Message Facebook style"
+description = "Message example."
+core = "7.x"
+package = "Message"
+php = "5.2.4"
+dependencies[] = "message"
+dependencies[] = "babble"
