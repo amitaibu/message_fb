@@ -56,6 +56,7 @@ function message_fb_preprocess_message(&$variables) {
   $babble_body_field['#attached']['css'][] = drupal_get_path('module', 'message_fb') . '/css/message_fb.css';
   $babble_body_field['#attached']['js'][] = drupal_get_path('module', 'message_fb') . '/js/message_fb.js';
 
+  $variables['content'][$babble_field]['#label_display'] = 'hidden';
   $variables['content'][$babble_field . '_babble_comment_form']['#prefix'] = '';
   $variables['content'][$babble_field . '_babble_comment_form']['author']['_name']['#access'] = FALSE;
 

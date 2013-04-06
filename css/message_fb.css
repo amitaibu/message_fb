@@ -1,13 +1,26 @@
 .entity-message .col-first,
 .entity-message .col-last {
   float: left;
-  /* LTR */
 }
 .entity-message .col-first {
   width: 60px;
+  margin-right: -60px;
+}
+.entity-message .col-last {
+  margin-left: 60px;
+}
+.entity-message .message-comment {
+  margin-bottom: 15px;
 }
 .entity-message .message-comment .babble {
   background-color: #edeff4;
+}
+.entity-message .message-comment .babble .col-first {
+  width: 40px;
+  margin-right: -40px;
+}
+.entity-message .message-comment .babble .col-last {
+  margin-left: 40px;
 }
 .entity-message .message-comment .babble .user-picture img {
   width: 32px;
@@ -16,6 +29,10 @@
 .entity-message .message-comment .babble .content {
   margin-top: 2px;
   padding: 5px;
+}
+.entity-message .message-comment .babble .content .time-ago {
+  color: gray;
+  margin-bottom: 5px;
 }
 .entity-message .message-comment .form-actions {
   display: none;

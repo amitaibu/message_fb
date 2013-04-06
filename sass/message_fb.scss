@@ -4,20 +4,31 @@ $lightGray: #EDEFF4;
 
   .col-first,
   .col-last {
-    float: left; /* LTR */
+    float: left; // LTR
   }
 
   .col-first {
     width: 60px;
+    margin-right: -60px; // LTR
+  }
+
+  .col-last {
+    margin-left: 60px; // LTR
   }
 
   .message-comment {
+    margin-bottom: 15px;
 
     .babble {
       background-color: $lightGray;
 
       .col-first {
         width: 40px;
+        margin-right: -40px; // LTR
+      }
+
+      .col-last {
+        margin-left: 40px; // LTR
       }
 
       .user-picture img {
@@ -28,6 +39,11 @@ $lightGray: #EDEFF4;
       .content {
         margin-top: 2px;
         padding: 5px;
+
+        .time-ago {
+          color: gray;
+          margin-bottom: 5px;
+        }
       }
     }
 

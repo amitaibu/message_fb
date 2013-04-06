@@ -51,9 +51,9 @@
     <div class="col-last">
       <?php hide($content['time_ago']); ?>
       <?php print render($content); ?>
+      <div class="time-ago"><?php print render($content['time_ago']); ?></div>
     </div>
 
-    <div class="time-ago"><?php print render($content['time_ago']); ?></div>
 
   </div>
 
