@@ -1,5 +1,5 @@
-.message-content,
-.message-comment{
+.col-first,
+.col-last {
   float: left; /* LTR */
 }
 
