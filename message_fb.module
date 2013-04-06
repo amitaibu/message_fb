@@ -40,4 +40,11 @@ function message_fb_preprocess_entity(&$variables) {
 
   $variables['babble_field'] = $babble_field;
   $variables['theme_hook_suggestions'][] = 'message_fb';
+
+  $variables['content'][$babble_field . '_babble_comment_form']['babble_body'][LANGUAGE_NONE][0]['#title_display'] = 'invisible';
+  $variables['content'][$babble_field . '_babble_comment_form']['#prefix'] = '';
+  $variables['content'][$babble_field . '_babble_comment_form']['author']['_name']['#access'] = FALSE;
+
+  // Add CSS.
+  drupal_add_css(drupal_get_path('module', 'message_fb') . '/css/message_fb.css');
 }

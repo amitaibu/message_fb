@@ -1,0 +1,8 @@
+.message-content,
+.message-comment{
+  float: left; /* LTR */
+}
+
+.filter-wrapper {
+  display: none;
+}
