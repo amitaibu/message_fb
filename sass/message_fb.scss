@@ -19,6 +19,11 @@ $lightGray: #EDEFF4;
   .message-comment {
     margin-bottom: 15px;
 
+    .user-picture img {
+      width: 32px;
+      height: 32px;
+    }
+
     .babble {
       background-color: $lightGray;
 
@@ -31,11 +36,6 @@ $lightGray: #EDEFF4;
         margin-left: 40px; // LTR
       }
 
-      .user-picture img {
-        width: 32px;
-        height: 32px;
-      }
-
       .content {
         margin-top: 2px;
         padding: 5px;
@@ -46,6 +46,24 @@ $lightGray: #EDEFF4;
         }
       }
     }
+
+    .user-picture img {
+      width: 32px;
+      height: 32px;
+
+    }
+
+    .babble-comment-form {
+      padding: 5px;
+      margin-top: 2px;
+      background-color: $lightGray;
+
+      .user-picture {
+        float: left;
+        width: 40px;
+      }
+    }
+
 
     .form-actions {
       display: none;

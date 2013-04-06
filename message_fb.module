@@ -25,6 +25,8 @@ function message_fb_theme(){
  * Message preprocess.
  */
 function message_fb_preprocess_message(&$variables) {
+  global $user;
+
   // Check if we have a Babble field on the Message entity.
   $message = $variables['message'];
   $babble_field = FALSE;
@@ -45,12 +47,15 @@ function message_fb_preprocess_message(&$variables) {
   $variables['theme_hook_suggestions'][] = 'message_fb';
 
   $babble_body_field = &$variables['content'][$babble_field . '_babble_comment_form']['babble_body'][LANGUAGE_NONE][0]['value'];
-
   $babble_body_field['#title_display'] = 'invisible';
 
   // Add HTML5 required.
   $babble_body_field['#attributes']['required'] = 'required';
   $babble_body_field['#attributes']['placeholder'] = t('Write a comment...');
+
+  $account = user_load($user->uid);
+  $picture = theme('user_picture', array('account' => $account));
+  $babble_body_field['#prefix'] = $picture ? $picture : '';
 
   // Add assets.
   $babble_body_field['#attached']['css'][] = drupal_get_path('module', 'message_fb') . '/css/message_fb.css';
