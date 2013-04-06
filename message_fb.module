@@ -17,11 +17,10 @@ function message_fb_theme(){
   );
 }
 
-function message_fb_preprocess_entity(&$variables) {
-  if ($variables['entity_type'] != 'message') {
-    return;
-  }
-
+/**
+ * Message preprocess.
+ */
+function message_fb_preprocess_message(&$variables) {
   // Check if we have a Babble field on the Message entity.
   $message = $variables['message'];
   $babble_field = FALSE;
@@ -41,12 +40,17 @@ function message_fb_preprocess_entity(&$variables) {
   $variables['babble_field'] = $babble_field;
   $variables['theme_hook_suggestions'][] = 'message_fb';
 
-  $babble_body_field = &$variables['content'][$babble_field . '_babble_comment_form']['babble_body'][LANGUAGE_NONE][0];
+  $babble_body_field = &$variables['content'][$babble_field . '_babble_comment_form']['babble_body'][LANGUAGE_NONE][0]['value'];
 
   $babble_body_field['#title_display'] = 'invisible';
 
   // Add HTML5 required.
-  $babble_body_field['value']['#attributes']['required'] = 'required';
+  $babble_body_field['#attributes']['required'] = 'required';
+  $babble_body_field['#attributes']['placeholder'] = t('Write a comment...');
+
+  // Add assets.
+  $babble_body_field['#attached']['css'][] = drupal_get_path('module', 'message_fb') . '/css/message_fb.css';
+  $babble_body_field['#attached']['js'][] = drupal_get_path('module', 'message_fb') . '/js/message_fb.js';
 
   $variables['content'][$babble_field . '_babble_comment_form']['#prefix'] = '';
   $variables['content'][$babble_field . '_babble_comment_form']['author']['_name']['#access'] = FALSE;
@@ -55,7 +59,11 @@ function message_fb_preprocess_entity(&$variables) {
   $account = user_load($variables['message']->uid);
   $picture = theme('user_picture', array('account' => $account));
   $variables['content']['picture'] = $picture ? $picture : '';
+}
 
-  // Add CSS.
-  drupal_add_css(drupal_get_path('module', 'message_fb') . '/css/message_fb.css');
+/**
+ * Babble preprocess.
+ */
+function message_fb_preprocess_babble(&$variables) {
+  // dpm($variables);
 }

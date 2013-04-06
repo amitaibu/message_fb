@@ -1,8 +1,25 @@
-.col-first,
-.col-last {
-  float: left; /* LTR */
+.entity-message .col-first,
+.entity-message .col-last {
+  float: left;
+  /* LTR */
 }
-
-.filter-wrapper {
+.entity-message .col-first {
+  width: 60px;
+}
+.entity-message .message-comment .babble {
+  background-color: #edeff4;
+}
+.entity-message .message-comment .babble .user-picture img {
+  width: 32px;
+  height: 32px;
+}
+.entity-message .message-comment .babble .content {
+  margin-top: 2px;
+  padding: 5px;
+}
+.entity-message .message-comment .form-actions {
+  display: none;
+}
+.entity-message .message-comment .filter-wrapper {
   display: none;
 }

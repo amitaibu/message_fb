@@ -1,0 +1,39 @@
+$lightGray: #EDEFF4;
+
+.entity-message {
+
+  .col-first,
+  .col-last {
+    float: left; /* LTR */
+  }
+
+  .col-first {
+    width: 60px;
+  }
+
+  .message-comment {
+
+    .babble {
+      background-color: $lightGray;
+
+      .user-picture img {
+        width: 32px;
+        height: 32px;
+      }
+
+      .content {
+        margin-top: 2px;
+        padding: 5px;
+      }
+    }
+
+    .form-actions {
+      display: none;
+    }
+
+    .filter-wrapper {
+      display: none;
+    }
+  }
+}
+
