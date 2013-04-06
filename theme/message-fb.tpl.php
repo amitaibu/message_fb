@@ -1,7 +1,7 @@
 <div class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 
   <div class="col-first">
-    <?php print $content['picture']; ?>
+    <?php print $user_picture; ?>
   </div>
 
   <div class="col-last">

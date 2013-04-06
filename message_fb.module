@@ -14,6 +14,10 @@ function message_fb_theme(){
       'template' => 'theme/message-fb',
       'render element' => 'entity'
     ),
+    'babble__field_comment' =>  array(
+      'template' => 'theme/babble--field-comment',
+      'render element' => 'babble'
+    ),
   );
 }
 
@@ -56,14 +60,27 @@ function message_fb_preprocess_message(&$variables) {
   $variables['content'][$babble_field . '_babble_comment_form']['author']['_name']['#access'] = FALSE;
 
   // Get the user's picture.
-  $account = user_load($variables['message']->uid);
+  $account = user_load($message->uid);
   $picture = theme('user_picture', array('account' => $account));
-  $variables['content']['picture'] = $picture ? $picture : '';
+  $variables['user_picture'] = $picture ? $picture : '';
 }
 
 /**
  * Babble preprocess.
  */
 function message_fb_preprocess_babble(&$variables) {
-  // dpm($variables);
+  $babble = $variables['babble'];
+  if ($babble->field_name != 'field_comment') {
+    return;
+  }
+  $time_ago = format_interval(REQUEST_TIME - $babble->created);
+  $variables['content']['time_ago'] = array(
+    '#markup' => t('@time ago', array('@time' => $time_ago)),
+    '#weight' => 99,
+  );
+
+  // Get the user's picture.
+  $account = user_load($babble->uid);
+  $picture = theme('user_picture', array('account' => $account));
+  $variables['user_picture'] = $picture ? $picture : '';
 }

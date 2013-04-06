@@ -45,8 +45,16 @@
   <?php print render($title_suffix); ?>
 
   <div class="content"<?php print $content_attributes; ?>>
-    <?php //print render($content); ?>
-    HELLLLOOOO!
+    <div class="col-first">
+      <?php print $user_picture; ?>
+    </div>
+    <div class="col-last">
+      <?php hide($content['time_ago']); ?>
+      <?php print render($content); ?>
+    </div>
+
+    <div class="time-ago"><?php print render($content['time_ago']); ?></div>
+
   </div>
 
 </div>
