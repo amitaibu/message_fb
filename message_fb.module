@@ -37,6 +37,41 @@ function message_fb_form_field_ui_field_edit_form_alter(&$form, $form_state) {
 }
 
 /**
+ * Implements hook_field_create_instance().
+ */
+function message_fb_field_create_instance($instance) {
+  _message_fb_field_crud_instance($instance);
+}
+
+/**
+ * Implements hook_field_update_instance().
+ */
+function message_fb_field_update_instance($instance) {
+  _message_fb_field_crud_instance($instance);
+}
+
+/**
+ * Delete the Babble subject field.
+ *
+ * @param $instance
+ *   The field instance of the host.
+ */
+function _message_fb_field_crud_instance($instance) {
+  if (!message_fb_is_message_fb_instance($instance)) {
+    return;
+  }
+
+  $field = field_info_field($instance['field_name']);
+  if (field_has_data($field)) {
+    return;
+  }
+
+  // Delete the subject.
+  $subject_instance = field_info_instance('babble', 'babble_subject', $instance['field_name']);
+  field_delete_instance($subject_instance);
+}
+
+/**
  * Return TRUE if the field instance should be in Facebook style.
  *
  * @param $instance
@@ -95,6 +130,7 @@ function message_fb_preprocess_message(&$variables) {
  */
 function message_fb_preprocess_babble(&$variables) {
   $babble = $variables['babble'];
+  dpm($variables);
   if ($babble->field_name != 'field_comment') {
     return;
   }
