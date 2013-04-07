@@ -22,6 +22,21 @@ function message_fb_theme(){
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Add settings to field instance UI.
+ */
+function message_fb_form_field_ui_field_edit_form_alter(&$form, $form_state) {
+  $instance = $form['#instance'];
+  $form['instance']['settings']['message_fb'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Message Facebook style'),
+    '#description' => t('When enabled, the Message-Facebook module will theme the Babble field using a Facebook style CSS and Javascript.'),
+    '#default_value' => isset($instance['settings']['message_fb']) ? $instance['settings']['message_fb'] : FALSE,
+  );
+}
+
+/**
  * Message preprocess.
  */
 function message_fb_preprocess_message(&$variables) {
