@@ -44,11 +44,8 @@ function message_fb_form_field_ui_field_edit_form_alter(&$form, $form_state) {
  */
 function message_fb_is_message_fb_instance($instance) {
   $field = field_info_field($instance['field_name']);
-  if ($field['type'] != 'babble') {
-    return;
-  }
 
-  return !empty($instance['settings']['message_fb']);
+  return $field['type'] == 'babble' && !empty($instance['settings']['message_fb']);
 }
 
 /**
