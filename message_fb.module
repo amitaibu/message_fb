@@ -61,13 +61,20 @@ function _message_fb_field_crud_instance($instance) {
     return;
   }
 
-  $field = field_info_field($instance['field_name']);
+  $field_name = $instance['field_name'];
+
+
+  $body_instance = field_info_instance('babble', 'babble_subject', $field_name);
+  $body_instance['babble'][$field_name]['babble_body']['widget']['settings']['rows'] = 1;
+  field_update_instance($body_instance);
+
+  $field = field_info_field($field_name);
   if (field_has_data($field)) {
     return;
   }
 
   // Delete the subject.
-  $subject_instance = field_info_instance('babble', 'babble_subject', $instance['field_name']);
+  $subject_instance = field_info_instance('babble', 'babble_subject', $field_name);
   field_delete_instance($subject_instance);
 }
 
